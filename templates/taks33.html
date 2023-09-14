@@ -1,0 +1,65 @@
+{%extends "base.html" %}
+  {% block content %}
+ <main>
+    <article>
+        <section class="section course" id="courses" aria-label="course"
+        style="background-image: url('../static/assets/back.jpg')">
+        <div class="container">
+
+          <!--<p class="section-subtitle" style="font-family:'Cairo',sans-serif;">نشاطات وأحداث مدرستنا كتيرة جدًا</p>-->
+
+          <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">المستوى الأول</h2>
+
+      <section class="section cta" id="newnews" aria-label="workshop" style="background-image: url('../static/assets/back.jpg')">
+        <div class="container">
+          <div class="cta-content">
+
+                {% for n in taks33data %}
+
+               <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;text-align:center; color:black; "> {{  n.العنوان |safe }}</h2>
+            <h4 class="section-subtitle" style=" font-family:'CopticFont';text-align:center; color:blue;">   {{  n.الواصف |safe }}   </h4>
+
+            <audio controls style="align-item:center;" >
+              <source src="{{  n.audios.url }}" type="audio/mpeg" style="margin-right:0px">
+            </audio>
+              <br> <br>
+
+
+<br>
+<br>
+
+           {% endfor %}
+          </div>
+
+          <figure class="cta-banner" style=" background-color:rgb(255, 255, 255);">
+            <embed src="{{  taks33data.0.pdf.url }}
+" type="application/pdf" width="100%" height="1000px" class="img-cover" />
+         
+          </figure>
+
+          
+        </div>
+      </section>
+        </div>
+        </section>
+      <!--<section class="hero" id="home" aria-label="hero" style="background-image: url('../assets/back.jpg')">-->
+    </article>
+  </main>
+   <!-- 
+    - #FOOTER
+  -->
+
+  
+ <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="arrow-up"></ion-icon>
+  </a>
+
+
+
+
+
+  {% endblock  %}

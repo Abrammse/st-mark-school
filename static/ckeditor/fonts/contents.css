@@ -1,0 +1,6 @@
+@font-face
+{
+    font-family:'CopticFont';
+    src:url('/fonts/Avva_Shenouda.ttf')format('truetype'),
+    /*unicode-range: U+0-10FFFF;*/
+}

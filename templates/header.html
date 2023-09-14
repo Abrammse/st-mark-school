@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدرسة القديس مرقس الرسول للألحان</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="../static/assets/unnamed.jpg" type="image/svg+xml">
+  <link rel="stylesheet" href="../static/style.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="../static/assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!--
+    - preload images
+  -->
+  <link rel="preload" as="image" href="../static/assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="../static/assets/images/hero-abs-1.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="../static/assets/images/hero-abs-2.png" media="min-width(768px)">
+
+</head>
+
+<body id="top">
+
+  <!--
+    - #HEADER
+  -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300&family=Reem+Kufi:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Coptic&display=swap');
+    </style>
+  <header class="header" data-header>
+
+    <div class="container">
+
+      <h1>
+       <a href="{% url 'home'  %}" class="logo" style="font-family:'Cairo',sans-serif;">مدرسة القديس مرقس  للألحان</a>
+      </h1>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="{% url 'home'  %}" class="logo" style="font-family:'Cairo',sans-serif;">مدرسة القديس مرقس  للألحان</a>
+          <button class="nav-close-btn" aria-label="Close menu" data-nav-toggler>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list"style="font-family:'Cairo',sans-serif;" >
+
+          <li class="navbar-item" >
+
+            <a href="{% url 'home'  %}" class="navbar-link" data-nav-toggler>الرئيسية</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{% url 'home'  %}#about" class="navbar-link" data-nav-toggler>عن المدرسة</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{% url 'home'  %}#category" class="navbar-link" data-nav-toggler>المناهج</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{% url 'home'  %}#newnews" class="navbar-link" data-nav-toggler>أخر الأخبار</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{% url 'home'  %}#courses" class="navbar-link" data-nav-toggler>مدونة المدرسة</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="{% url 'home'  %}#footer" class="navbar-link" data-nav-toggler>تواصل معانا</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <button class="header-action-btn" aria-label="Open search" data-search-toggler>
+          <ion-icon name="book"></ion-icon>
+        </button>
+
+        <a href="system/" class="header-action-btn login-btn">
+          <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+
+          <span class="span" style="font-family:'Cairo',sans-serif;">تسجيل الدخول / إنشاء حساب</span>
+        </a>
+
+        <button class="header-action-btn nav-open-btn" aria-label="Open menu" data-nav-toggler>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <!--
+    - #SEARCH BOX
+  -->
+
+  <div class="search-container" data-search-box  dir="ltr">
+    <div class="container">
+
+      <button class="search-close-btn" aria-label="Close search" data-search-toggler>
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="search-wrapper">
+       <!---<input type="search" name="search" placeholder="ابحث هنا...." aria-label="Search" class="search-field"style= "font-family:'Cairo',sans-serif;">-->
+     <marquee  direction="right"  scrollamount="5"style="font-family:'Cairo',sans-serif;
+  width: 70vh;
+  height: 40px;
+
+"  >
+     {{ Ayadata.0.الاية |safe }}
+     </marquee>
+
+        <button class="search-submit" aria-label="Submit" data-search-toggler>
+
+        </button>
+      </div>
+
+    </div>
+  </div>
+

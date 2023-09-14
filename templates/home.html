@@ -1,0 +1,840 @@
+
+{%extends "base.html" %}
+  {% block content %}
+<style>
+  .card-banner-slider {
+  position: relative;
+  width: 370px;
+  height: 270px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.slider-control {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev-btn {
+    margin-top: 90px;
+
+  margin-right: 70px;
+  transform: translateX(90%)
+
+  }
+
+.next-btn {
+  margin-left: 70px;
+  transform: translateX(60%);
+}
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.card-banner.active {
+  opacity: 1;
+}
+
+.card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-control {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.card-actions .whishlist-btn {
+  margin-right: auto;
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+}
+
+.slider-controls .slider-control {
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.slider-controls .slider-control:hover {
+  background-color: #555;
+}
+</style>
+    <main>
+      <article>
+      <!--
+        - #HERO
+      -->
+
+      <section class="hero" id="home" aria-label="hero" style="background-image: url('../static/assets/back.jpg')">
+
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="section-subtitle"style="font-family:'Cairo',sans-serif;">{{ headerData.0.header_sub }}</p>
+
+            <h2 class="h1 hero-title"style="font-family:'Cairo',sans-serif;">{{ headerData.0.header_title }}</h2>
+
+            <p class="hero-text"style="font-family:'Cairo',sans-serif;">
+              {{  headerData.0.header_des }}
+            <p class="hero-text"style="font-family:'Cairo',sans-serif;">
+              {{  headerData.0.header_des2 }}
+            </p>
+
+            <a href="{%  url 'newac'  %}" class="btn btn-primary">
+              <span class="span"style="font-family:'Cairo',sans-serif;">يلا اشترك معانا</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+
+{% load static %}
+
+<figure class="hero-banner">
+    <img src="{{ headerData.0.header_image.url }}" width="500" height="500" loading="lazy" alt="hero image" class="w-100">
+    <img src="{{ headerData.0.header_image2.url }}" width="318" height="352" loading="lazy" aria-hidden="true" class="abs-img abs-img-1">
+    <img src="{{ headerData.0.header_image3.url }}" width="160" height="160" loading="lazy" aria-hidden="true" class="abs-img abs-img-2">
+</figure>
+
+
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+  <section class="section category" id="category" aria-label="category">
+        <div class="container">
+
+          <p class="section-subtitle"style="font-family:'Cairo',sans-serif;">مواد المراحل</p>
+
+          <h2 class="h2 section-title"style="font-family:'Cairo',sans-serif;">المناهج لكل مرحلة</h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="headset-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'al7an1'  %}"style="font-family:'Cairo',sans-serif;">الألحان من مرحلة حضانة إلى ابتدائي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="headset-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'al7an2'  %}"style="font-family:'Cairo',sans-serif;">الألحان لمرحلة إعدادي وثانوي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="headset-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'al7an3'  %}"style="font-family:'Cairo',sans-serif;">الألحان لمرحلة شباب وكبار</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'taks1'  %}" style="font-family:'Cairo',sans-serif;">الطقس لمرحلة حضانة إلى ابتدائي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'taks2'  %}" style="font-family:'Cairo',sans-serif;">الطقس لمرحلة إعدادي وثانوي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'taks3'  %}" style="font-family:'Cairo',sans-serif;">الطقس لمرحلة شباب وكبار</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'kpaty1'  %}" style="font-family:'Cairo',sans-serif;">القبطي لمرحلة حضانة وابتدائي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'kpaty2'  %}" style="font-family:'Cairo',sans-serif;">القبطي لمرحلة إعدادي وثانوي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'kpaty3'  %}" style="font-family:'Cairo',sans-serif;">القبطي لمرحلة شباب وكبار</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="medkit-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'Agpia1'  %}" style="font-family:'Cairo',sans-serif;">الكتاب المقدس والأجبية لمرحلة حضانة وإبتدائي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="medkit-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'Agpia2'  %}" style="font-family:'Cairo',sans-serif;">الكتاب المقدس والأجبية لمرحلة إعدادي وثانوي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="medkit-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'Agpia3'  %}" style="font-family:'Cairo',sans-serif;">الكتاب المقدس والأجبية لمرحلة شباب وكبار</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="file:///E:/St.Mark_school/school%20(1)/school/eduhome-master/Category/Kepty1.html" style="font-family:'Cairo',sans-serif;">
+                      نتيجة مرحلة حضانة وابتدائي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="file:///E:/St.Mark_school/school%20(1)/school/eduhome-master/Category/Kepty2.html" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة إعدادي وثانوي</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة شباب وكبار</a>
+                  </h3>
+
+                  <span class="card-meta">3 مستويات</span>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+
+          <figure class="about-banner">
+
+            <img src="../static/assets/download (4).jpg" width="450" height="590" loading="lazy" alt="about banner"
+              class="w-100 about-img">
+
+            <img src="../static/assets/512x512bb.jpg" width="188" height="242" loading="lazy" aria-hidden="true"
+              class="abs-img abs-img-1">
+
+            <img src="../static/assets/channels4_profile.jpg" width="150" height="200" loading="lazy" aria-hidden="true"
+              class="abs-img abs-img-2">
+
+          </figure>
+
+          <div class="about-content">
+
+            <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">احنا مين؟!</p>
+
+            <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">مدرسة قبطية أرثذوكسية</h2>
+
+            <ul class="about-list">
+
+              <li class="about-item">
+
+                <div class="item-icon item-icon-1">
+                  <img src="../static/assets/images/about-icon-1.png" width="30" height="30" loading="lazy" aria-hidden="true">
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title" style="font-family:'Cairo',sans-serif;">مين يقدر يشترك معانا</h3>
+
+                  <p class="item-text" style="font-family:'Cairo',sans-serif;">
+                     مدرستنا بتقبل من سن كي جي فيما فوق أولاد وبنات.
+                  </p>
+                </div>
+
+              </li>
+
+              <li class="about-item">
+
+                <div class="item-icon item-icon-2">
+                  <img src="../static/assets/images/about-icon-2.png" width="30" height="30" loading="lazy" aria-hidden="true">
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title" style="font-family:'Cairo',sans-serif;">مناهج المدرسة</h3>
+
+                  <p class="item-text" style="font-family:'Cairo',sans-serif;">
+                    هتتعلم معانا في المدرسة ألحان وقبطي وطقس وهنحفظ أجزاء كتيرة من الأجبية وكمان هندرس كتاب مقدس.
+                  </p>
+                </div>
+
+              </li>
+
+              <li class="about-item">
+
+                <div class="item-icon item-icon-3">
+                  <img src="../static/assets/images/about-icon-3.png" width="30" height="30" loading="lazy" aria-hidden="true">
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title" style="font-family:'Cairo',sans-serif;">المراكز والمسابقات</h3>
+
+                  <p class="item-text" style="font-family:'Cairo',sans-serif;">
+                    عندنا هدايا مميزة لأول 3 مراكز من كل مرحلة ده غير رسامات الشمامسة للولاد المتفوقين.
+                  </p>
+                </div>
+
+              </li>
+
+
+            </ul>
+
+            <a href="{%  url 'home'  %}" class="btn btn-primary">
+              <span class="span" style="font-family:'Cairo',sans-serif;">أعرف أكتر...</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #COURSE
+      -->
+
+<section class="section course" id="courses" aria-label="course" style="background-image: url('../static/assets/images/course-bg.jpg')">
+  <div class="container">
+    <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">نشاطات وأحداث مدرستنا كتيرة جدًا</p>
+    <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">معرض صور المدرسة</h2>
+    <ul class="grid-list">
+      {% for n in photodata|slice:":6" %}
+        <li>
+          <div class="course-card">
+            <div class="card-banner-slider">
+              <div class="slider-container">
+                {% for photo in n.الصور_الصورة.all %}
+                  <figure class="card-banner active">
+                    <img src="{{ photo.الصورة.url }}" width="370" height="270" loading="lazy" alt="Competitive Strategy law for all students" class="img-cover">
+                  </figure>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="card-actions">
+              <span class="badge">Basic</span>
+              <button class="whishlist-btn" aria-label="Add to whishlist" data-whish-btn>
+                <ion-icon name="heart"></ion-icon>
+              </button>
+            </div>
+            <div class="card-content">
+              <ul class="card-meta-list">
+                <li class="card-meta-item">
+                  <ion-icon name="reader-outline" aria-hidden="true"></ion-icon>
+                  <span class="card-meta-text">{{ n.عدد }}</span>
+                </li>
+                <li class="card-meta-item">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <time datetime="PT18H15M44S" class="card-meta-text">{{ n.التاريخ }}</time>
+                </li>
+              </ul>
+              <h3 class="h3">
+                <a href="#" class="card-title" style="font-family:'Cairo',sans-serif;">{{ n.المناسبة|safe }}</a>
+              </h3>
+              <div class="rating-wrapper">
+                <!-- Add your rating code here -->
+              </div>
+              <!-- Add previous and next buttons for the slider -->
+              <div class="slider-controls">
+                <button class="slider-control prev-btn" aria-label="Previous slide">
+                  <ion-icon name="arrow-back"></ion-icon>
+                </button>
+                <button class="slider-control next-btn" aria-label="Next slide">
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <a href="{% url 'photo' %}" class="btn btn-primary">
+      <span class="span" style="font-family: 'Cairo', sans-serif;">اتفرج أكتر...</span>
+      <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+    </a>
+</section>
+
+
+
+      <!--
+        - #CTA
+      -->
+
+      <section class="section cta" id="newnews" aria-label="workshop" style="background-image: url('../static/assets/images/cta-bg.png')">
+        <div class="container">
+
+          <figure class="cta-banner">
+            <img src="{{ newdata.0.الصورة.url }}" width="580" height="380" loading="lazy" alt="cta banner"
+              class="img-cover">
+          </figure>
+
+          <div class="cta-content">
+
+            <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">{{ newdata.0.القسم }}</p>
+
+            <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">{{ newdata.0.العنوان }}</h2>
+
+            <a class="section-text" style="font-family:'Cairo',sans-serif;">
+               {{ newdata.0.الواصف |safe}}
+            </a>
+            <a href="{% url 'new'  %}" class="btn btn-secondary">
+              <span class="span" style="font-family:'Cairo',sans-serif;">أعرف أكتر</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #EVENT
+      -->
+
+      <section class="section event" id="event" aria-label="event">
+        <div class="container">
+
+          <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">مسئولى المدرسة</p>
+
+          <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">خدام المدرسة</h2>
+
+
+          <ul class="grid-list">
+
+             {% for n in peapledata %}
+
+            <li>
+              <div class="event-card">
+
+          <figure class="cta-banner">
+            <img src="{{ n.الصورة.url }}" width="370" height="250" loading="lazy" alt="cta banner"
+              class="img-cover">
+          </figure>
+
+                <time class="badge" datetime="2022-10-30" style="font-family:'Cairo',sans-serif;  ">{{ n.دوره }}</time>
+
+                <div class="card-content">
+
+                  <address class="card-address">
+                    <!--<ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+
+                    <span class="span" style="font-family:'Cairo',sans-serif;">Alpaca Way Anaheim, CA 92805</span>-->
+                  </address>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title" style="font-family:'Cairo',sans-serif;text-align:center;"> {{ n.اسمه }} </a>
+                  </h3>
+                    <!--<a href="#" class="btn-link">
+
+                    <span class="span" style="font-family:'Cairo',sans-serif;">Get Ticket</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>-->
+
+
+                </div>
+
+              </div>
+            </li>
+
+            {% endfor %}
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #NEWSLETTER
+      -->
+
+     <!--- <section class="section newsletter" aria-label="newsletter"
+        style="background-image: url('./assets/images/newsletter-bg.jpg')" dir="ltr">
+        <div class="container">
+
+          <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">راعي المدرسة</p>
+
+          <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">القمص مارك جورج</h2>
+
+          <figure class="cta-banner" style="color: bisque;">
+            <img src="./assets/images/ElKommosMarkG.jpg" width="580" height="380" loading="lazy" alt="cta banner"
+              class="img-cover" style="color: bisque;">
+          </figure>
+
+        <form action="" class="newsletter-form">
+
+            <div class="input-wrapper">
+              <input type="email" name="email_address" aria-label="email" placeholder="Enter your mail address" required
+                class="email-field">
+
+              <ion-icon name="mail-open-outline" aria-hidden="true"></ion-icon>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <span class="span" style="font-family:'Cairo',sans-serif;">اشترك</span>
+
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </button>
+
+          </form>-->
+
+        <!--</div>
+      </section>-->
+
+    </article>
+  </main>
+
+
+<section class="section cta" id="newn" aria-label="workshop" style="background-image: url('../static/assets/back.jpg')">
+        <div class="container">
+          <div class="cta-content">
+
+            <p class="section-subtitle" style="font-family:'Cairo',sans-serif; text-align:center; color:blue;">{{ markdata.0.mark_sub}}</p>
+            <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif; text-align:center; color:black;">{{ markdata.0.mark_title}}</h2>
+<br>
+<br>
+
+
+          </div>
+          <figure class="cta-banner" style=" background-color:white;">
+            <img src="{{ markdata.0.mark_image.url }}" width="580" height="380" loading="lazy" alt="cta banner"
+              class="img-cover" style="color: bisque;">
+          </figure>
+
+
+        </div>
+      </section>
+
+
+<script>
+  // Get the slider containers and the slider controls
+  const sliderContainers = document.querySelectorAll('.slider-container');
+  const prevBtns = document.querySelectorAll('.prev-btn');
+  const nextBtns = document.querySelectorAll('.next-btn');
+
+  // Iterate over each slider
+  sliderContainers.forEach((sliderContainer, index) => {
+    // Get all the slides in the current slider container
+    const slides = sliderContainer.querySelectorAll('.card-banner');
+
+    // Initialize the slide index to 0
+    let slideIndex = 0;
+
+    // Show the first slide
+    slides[0].classList.add('active');
+
+    // Add event listeners to the previous and next buttons of the current slider
+    prevBtns[index].addEventListener('click', showPrevSlide);
+    nextBtns[index].addEventListener('click', showNextSlide);
+
+    // Function to show the previous slide
+    function showPrevSlide() {
+      // Hide the current slide
+      slides[slideIndex].classList.remove('active');
+      // Decrement the slide index
+      slideIndex--;
+      // Wrap around to the last slide if needed
+      if (slideIndex < 0) {
+        slideIndex = slides.length - 1;
+      }
+      // Show the new slide
+      slides[slideIndex].classList.add('active');
+    }
+
+    // Function to show the next slide
+    function showNextSlide() {
+      // Hide the current slide
+      slides[slideIndex].classList.remove('active');
+      // Increment the slide index
+      slideIndex++;
+      // Wrap around to the first slide if needed
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+      // Show the new slide
+      slides[slideIndex].classList.add('active');
+    }
+  });
+</script>
+<!--
+    - #FOOTER
+  -->
+
+   {% endblock  %}

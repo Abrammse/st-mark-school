@@ -1,0 +1,104 @@
+
+
+
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>طلب الالتحاق بالمدرسة</title> <!---Add a title to the page--->
+      <link rel="shortcut icon" href="../static/assets/unnamed.jpg" type="image/svg+xml">
+
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="../static/stylesend.css" />
+  </head>
+  <body>
+<section class="container">
+  <div class="image-container">
+    <img src="../static/hero-abs-2.png" alt="Your Image" />
+  </div>
+  {% if form_config.is_open %}
+    <header>طلب الالتحاق بالمدرسة</header>
+    <!---Specify the URL to submit the form to in the action attribute--->
+    <form action="." method="post" class="form" id="Abram" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="input-box">
+        <label>الاسم بالكامل (ثلاثى)</label>
+        <input type="text" name="name" placeholder="ادخل اسم بالكامل" required />
+      </div>
+      <div class="input-box">
+        <label>اختار صورة شخصية</label>
+        <input type="file" name="image" accept="image/*" required />
+      </div>
+      <div class="column">
+        <div class="input-box" dir="rtl">
+          <label>رقم التلفون</label>
+          <input
+            name="tel"
+            type="tel"
+            placeholder="ادخل رقم التلفون"
+            required
+            pattern="[0-9]{11}"
+            title="يرجى إدخال رقم التلفون المكون من 11 رقماً فقط"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="11"
+          />
+        </div>
+      </div>
+      <div class="input-box" dir="ltr">
+        <label>تاريخ الميلاد</label>
+        <input name="date" type="date" placeholder="Enter birth date" required />
+      </div>
+      <div class="gender-box">
+        <h3>النوع</h3>
+        <div class="gender-option">
+          <div class="gender">
+            <input type="radio" id="check-male" name="gender" value="ولد" />
+            <label for="check-male">ولد</label>
+          </div>
+          <div class="gender">
+            <input type="radio" id="check-female" name="gender" value="بنت" />
+            <label for="check-female">بنت</label>
+          </div>
+        </div>
+      </div>
+      <div class="input-box address">
+        <label>العنوان</label>
+        <input name="address" type="text" placeholder="العنوان بالكامل" required />
+        <div class="column">
+          <div class="select-box">
+            <select name="classname">
+              <option hidden>المرحلة</option>
+              <option>حضانة وابتدائى</option>
+              <option>اعدادى و ثانوى</option>
+              <option>شباب وكبار</option>
+            </select>
+          </div>
+          <input name="degrees" type="text" placeholder="السنة الدراسية او المواهل" required />
+        </div>
+      </div>
+      <button type="submit">ارسال</button> <!---Specify the type of the button as submit---><br> <br>
+        {% else %}
+    <h3 style="text-align: center ;">تمام غلق التقديم فى المدرسة</h3>
+  {% endif %}
+
+      <a style="color:red; text-decoration:none;   " href="{% url 'home'  %}"><h1 style="text-align: center ;" >للرجوع للصفحة الرئيسية اضغط هنا</h1></a>
+    </form>
+</section>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    {% for message in messages %}
+      swal({
+        text: "{{ message }}",
+        icon: "success",
+        customClass: {
+          content: 'text-center',
+        }
+      });
+    {% endfor %}
+</script>
+  </body>
+</html>
