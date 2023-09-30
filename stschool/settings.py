@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-s)h77nte)9_d##2@(!w-$1%9-6feigjzfkpu)&g^mmi@m_dl@g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app',',now.sh']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "header","mark","ckeditor",'foot','new2','import_export',"الاخبار","القبطى","الطقس","الاجبية","الالحان","الخدام","الاية","photo",
+    "header","mark","ckeditor",'foot','app','import_export',"الاخبار","القبطى","الطقس","الاجبية","الالحان","الخدام","الاية","photo","result"
 
 
 ]
@@ -51,8 +51,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
-
 ]
 
 ROOT_URLCONF = "stschool.urls"
@@ -351,3 +349,6 @@ CKEDITOR_SETTINGS = {
     'skin': 'moonocolor',
     'toolbar': 'toolbar_Basic',
 }
+import os
+STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+STATIC_ROOT  = os.path.join(BASE_DIR,'staticfiles_bulid' ,'static'),

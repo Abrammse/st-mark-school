@@ -410,11 +410,27 @@
 
                 <div>
                   <h3 class="h3 card-title">
-                    <a href="file:///E:/St.Mark_school/school%20(1)/school/eduhome-master/Category/Kepty1.html" style="font-family:'Cairo',sans-serif;">
-                      نتيجة مرحلة حضانة وابتدائي</a>
+                    <a href="{% url 'login' %}?message=login_required"  style="font-family:'Cairo',sans-serif;">
+                    نتيجة مرحلة حضانة وابتدائي
+                   </a>
+                  </h3>
+               </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="category-card">
+
+                <div class="card-icon">
+                  <ion-icon name="file-tray-full-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 card-title">
+                    <a href="{% url 'login'  %}?message=login_required" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة إعدادي وثانوي</a>
                   </h3>
 
-                  <span class="card-meta">3 مستويات</span>
+
                 </div>
 
               </div>
@@ -429,28 +445,10 @@
 
                 <div>
                   <h3 class="h3 card-title">
-                    <a href="file:///E:/St.Mark_school/school%20(1)/school/eduhome-master/Category/Kepty2.html" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة إعدادي وثانوي</a>
+                    <a href="{% url 'login'  %}?message=login_required" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة شباب وكبار</a>
                   </h3>
 
-                  <span class="card-meta">3 مستويات</span>
-                </div>
 
-              </div>
-            </li>
-
-            <li>
-              <div class="category-card">
-
-                <div class="card-icon">
-                  <ion-icon name="file-tray-full-outline"></ion-icon>
-                </div>
-
-                <div>
-                  <h3 class="h3 card-title">
-                    <a href="" style="font-family:'Cairo',sans-serif;">نتيجة مرحلة شباب وكبار</a>
-                  </h3>
-
-                  <span class="card-meta">3 مستويات</span>
                 </div>
 
               </div>
@@ -836,5 +834,8 @@
 <!--
     - #FOOTER
   -->
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
    {% endblock  %}

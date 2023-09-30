@@ -89,7 +89,8 @@ urlpatterns = [
     path("photo/", views.Abram,name="photo"),
     path("newac/", views.send,name="newac"),
     path("system/", views.system, name="system"),
-    path("login/", views.login, name="system"),
+    path("login/", views.login_view, name="login"),
+    path("search/", views.search_school, name="search"),
 
 ]
 if settings.DEBUG:

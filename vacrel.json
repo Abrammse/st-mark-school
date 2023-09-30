@@ -1,0 +1,30 @@
+{
+  "version": 2,
+    "builds": [
+
+      {
+        "src": "stschool/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb","runtime": "Python 3.10.8" }
+    },
+
+
+      {
+        "src": "bulid_files.sh",
+        "use": "@vercel/static-bulid",
+        "config": { "distDir": "staticfiles_bulid" }
+    }
+
+    ],
+    "routes": [
+        {
+            "src": "/static/(.*)",
+            "dest": "vercel_app/$1"
+        },
+       {
+            "src": "/(.*)",
+            "dest": "vercel_app/wsgi.py"
+        }
+    ]
+
+}

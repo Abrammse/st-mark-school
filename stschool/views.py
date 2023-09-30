@@ -1,6 +1,9 @@
 from django.contrib import messages
 from django.shortcuts import render ,redirect
 
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
+
 from header.models import header
 from الاخبار.models import الاخبار
 from mark.models import mark
@@ -72,7 +75,8 @@ from الطقس.models import الطقس31
 from الطقس.models import الطقس32
 from الطقس.models import الطقس33
 
-from new2.models import Student,FormConfiguration
+from app.models import Students,FormConfiguration
+from result.models import Student
 
 
 
@@ -125,32 +129,31 @@ def send(request):
         name = request.POST['name']
         telephone = request.POST['tel']
         photo = request.FILES['image']
-
         date = request.POST['date']
         gender = request.POST['gender']
-        address = request.POST['address']
+        العنوان = request.POST['العنوان']
         classname = request.POST['classname']
         degrees = request.POST['degrees']
 
-        obj=Student()
+        obj = Students()
         obj.الاسم = name
         obj.tel = telephone
         obj.data = date
         obj.photo = photo
         obj.gender = gender
-        obj.Address = address
+        obj.Аddress = العنوان
         obj.mark = classname
         obj.degree = degrees
         obj.save()
-        messages.success(request, 'تم تسجيل طلبك بنجاح برجاء التوجه لمكتب المدرسة  لدفع المصاريف.',)
-        return redirect('newac')
-    form_config = FormConfiguration.objects.first()
 
+        messages.success(request, 'تم تسجيل طلبك بنجاح برجاء التوجه لمكتب المدرسة لدفع المصاريف.',)
+        return redirect('newac')
+
+    form_config = FormConfiguration.objects.first()
     context = {
         'form_config': form_config,
     }
     return render(request, 'send.html', context)
-
 def al7an1(request):
     al7an1data = اللحان1.objects.all()
     Ayadata = الاية.objects.all()
@@ -780,26 +783,92 @@ def meka2(request):
 
 def system(request):
 
-    return render(request,'index.html',)
 
+
+ return render(request,'index.html')
+def search_school(request):
+    if request.method == 'GET':
+        school_id = request.GET.get('school-search')
+        students = Student.objects.filter(idschool=school_id)
+
+        selected_student = None
+        subjects = []
+        total_grades = []
+        success_message = request.GET.get('success_message')
+
+        if students:
+            selected_student = students[0]
+            subjects = selected_student.subjects.all()
+            for subject in subjects:
+                grade = subject.grade
+                if grade.isdigit():
+                    try:
+                        total_grades.append(int(grade))
+                    except ValueError:
+                        pass
+        else:
+            success_message = "لا توجد بيانات صحيح"
+
+        if 'pdf' in request.GET:
+            # Generate PDF or perform any other action if needed
+            pass
+
+        # Check if results should be open or closed
+        results_open = True  # Set to True by default
+        if 'close_results' in request.GET:
+            results_open = False
+
+
+        context = {
+            'students': students,
+            'selected_student': selected_student,
+            'subjects': subjects,
+            'total_grades': sum(total_grades),
+            'success_message': success_message,
+            'student': selected_student,  # Add this line to pass the selected student to the template
+            'results_open': results_open,
+        }
+
+        return render(request, 'search.html', context)
+
+    return render(request, 'search.html')
 def new(request):
+    Ayadata = الاية.objects.all()
     newdata=الاخبار.objects.all()
     data={
 
         'newdata': newdata,
+        'Ayadata': Ayadata,
 
 
     }
 
     return render(request,'NewNews.html',data)
 
-def login(request):
-    newdata=الاخبار.objects.all()
-    data={
 
-        'newdata': newdata,
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('name')
+        password = request.POST.get('pass')
 
+        try:
+            student = Student.objects.get(username=username, password=password)
+            # Login successful, perform necessary actions
+            # ...
 
-    }
+            if 'login_success' not in request.session:
+                messages.success(request, 'تم تسجيل الدخول بنجاح.')
+                request.session['login_success'] = True
 
-    return render(request,'login.html',data)
+            return redirect('search')
+
+        except Student.DoesNotExist:
+            # Login failed, handle error
+            messages.error(request, 'اسم المستخدم أو كلمة المرور غير صحيحة.')
+
+    # Get messages from the session
+    stored_messages = messages.get_messages(request)
+    for message in stored_messages:
+        pass  # Iterate over messages to process them, but without displaying them
+
+    return render(request, 'login.html')
