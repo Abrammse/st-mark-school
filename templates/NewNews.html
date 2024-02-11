@@ -1,0 +1,44 @@
+
+
+{%extends "base.html" %}
+  {% block content %}
+
+
+  <main>
+  <article>
+
+      <section class="section cta" id="newnews" aria-label="workshop" style="background-image: url('../static/assets/back.jpg')">
+
+      <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif; text-align: center; color:black;">أخر أخبار كنيستنا</h2>
+          <br><br>
+
+        {% for n in newdata %}
+        <div class="container">
+
+          <figure class="cta-banner">
+            <img src="{{ n.الصورة.url }}" width="580" height="380" loading="lazy" alt="cta banner"
+              class="img-cover">
+          </figure>
+
+          <div class="cta-content">
+
+
+            <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif; color:black;">{{ n.العنوان }}</h2>
+
+            <a class="section-text" style="font-family:'Cairo',sans-serif; color:black;">
+               {{ n.الواصف |safe}}
+            </a>
+
+
+
+
+          </div>
+
+        </div>
+        <br><br><br>
+         {% endfor %}
+      </section>
+    </article>
+</main>
+
+{% endblock  %}
