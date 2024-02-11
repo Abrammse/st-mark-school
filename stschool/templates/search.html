@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Search about your result</title> <!---Add a title to the page--->
+    <link rel="shortcut icon" href="../static/assets/unnamed.jpg" type="image/svg+xml">
+
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="../static/stylesend.css" />
+  </head>
+  <body>
+ <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      flex-grow: 1;
+    }
+
+    .image-container {
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+
+    caption {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    #grade-table {
+      margin-top: 20px;
+    }
+
+    p {
+      font-weight: bold;
+    }
+
+    #search-box {
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 300px; /* Added max-width to limit the width on larger screens */
+      font-size: 16px;
+      margin-bottom: 10px; /* Added margin-bottom to create spacing */
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #button1,
+    #button2 {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    #button1:hover,
+    #button2:hover {
+      background-color: #45a049;
+    }
+
+    /* Add the CSS class to hide elements */
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 599px) {
+      input[type="text"] {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      input[type="text"] {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 359px) {
+      input[type="text"] {
+        font-size: 10px;
+      }
+    }
+  </style>
+
+<section class="container">
+  <div class="image-container">
+    <img src="../static/hero-abs-2.png" alt="Your Image" />
+  </div>
+
+ <div id="search-box">
+    <form id="search-form" method="GET" action="{% url 'search' %}">
+        <input type="text" name="school-search" placeholder="من فضلك ادخل كود الطلاب" pattern="[0-9]+" title="يرجى إدخال أرقام فقط" required />
+        <button type="submit">عرض النتيجة
+    </form>
+</div>
+  <div id="student-table">
+    {% if students %}
+      <table>
+        <caption>نتيجة الطالب/ة</caption>
+        <thead>
+          <tr>
+            <th>اسم الطالب/ة</th>
+            <th>المستوى ({{ student.cla }})</th>
+          </tr>
+        </thead>
+        <tbody id="student-table-body">
+          {% for student in students %}
+            <tr>
+              <td>{{ student.name }}</td>
+              <td>{{ student.year }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% if student.results_open and selected_student %}
+        <table id="grade-table">
+          <caption>جدول المواد والدرجات</caption>
+          <thead>
+            <tr>
+              <th>المادة</th>
+              <th>درجة المادة</th>
+            </tr>
+          </thead>
+          <tbody id="subject-table-body">
+            {% for subject in subjects %}
+              <tr>
+                <td>{{ subject.subject.name }}</td>
+                <td>{{ subject.grade }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <p style="text-align: center;">التقدير العام: {{ students.0.التقديرالعام }}</p>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <button id="button1" class="hidden">للطباعة النتيجة</button>
+          <button id="button2" class="hidden">للعودة للصفحة الرئيسية</button>
+        </div>
+      {% else %}
+          <h3 style="text-align: center;">تمام حجب النتيجة</h3>
+        {% endif %}
+      {% endif %}
+  </div>
+</section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<script>
+  function hideSearchBox() {
+    var searchBox = document.getElementById('search-box');
+    searchBox.classList.add('hidden');
+
+    var button1 = document.getElementById('button1');
+    button1.classList.remove('hidden');
+
+    var button2 = document.getElementById('button2');
+    button2.classList.remove('hidden');
+  }
+
+  // Call the hideSearchBox function after displaying the student's result
+  {% if students or selected_student %}
+  hideSearchBox();
+  {% endif %}
+
+  // Print the student's result when button 1 is clicked
+  var button1 = document.getElementById('button1');
+  button1.addEventListener('click', function() {
+    // Hide the print button
+    button1.classList.add('hidden');
+    // Hide the return button
+    button2.classList.add('hidden');
+    // Hide the search box
+    var searchBox = document.getElementById('search-box');
+    searchBox.classList.add('hidden');
+    // Scroll to the top of the page
+    window.scrollTo(0, 0);
+    // Trigger the print functionality of the browser
+    window.print();
+    // Show the search box and buttons after the print dialog is closed
+    setTimeout(function() {
+      searchBox.classList.remove('hidden');
+      button1.classList.remove('hidden');
+      button2.classList.remove('hidden');
+    }, 1000);
+  });
+
+  // Return to the home page when button 2 is clicked
+  var button2 = document.getElementById('button2');
+  button2.addEventListener('click', function() {
+    window.location.href = "{% url 'home' %}"; // Replace 'home' with the actual URL or Django view name for your home page
+  });
+</script>
+  </body>
+</html>

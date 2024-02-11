@@ -1,0 +1,285 @@
+{%extends "base.html" %}
+  {% block content %}
+
+<style>
+  .card-banner-slider {
+  position: relative;
+  width: 370px;
+  height: 270px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.slider-control {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev-btn {
+    margin-top: 90px;
+
+  margin-right: 70px;
+  transform: translateX(90%)
+
+  }
+
+.next-btn {
+  margin-left: 70px;
+  transform: translateX(60%);
+}
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.card-banner.active {
+  opacity: 1;
+}
+
+.card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-control {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.card-actions .whishlist-btn {
+  margin-right: auto;
+}
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+}
+
+.slider-controls .slider-control {
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.slider-controls .slider-control:hover {
+  background-color: #555;
+}
+</style>
+  <main>
+    <article>
+
+
+
+ <!--
+        - #COURSE
+      -->
+
+<section class="section course" id="courses" aria-label="course" style="background-image: url('../static/assets/images/course-bg.jpg')">
+  <div class="container">
+    <p class="section-subtitle" style="font-family:'Cairo',sans-serif;">نشاطات وأحداث مدرستنا كتيرة جدًا</p>
+    <h2 class="h2 section-title" style="font-family:'Cairo',sans-serif;">معرض صور المدرسة</h2>
+    <ul class="grid-list">
+      {% for n in photodata %}
+        <li>
+          <div class="course-card">
+            <div class="card-banner-slider">
+              <div class="slider-container">
+                {% for photo in n.الصور_الصورة.all %}
+                  <figure class="card-banner active">
+                    <img src="{{ photo.الصورة.url }}" width="370" height="270" loading="lazy" alt="Competitive Strategy law for all students" class="img-cover">
+                  </figure>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="card-actions">
+              <span class="badge">Basic</span>
+              <button class="whishlist-btn" aria-label="Add to whishlist" data-whish-btn>
+                <ion-icon name="heart"></ion-icon>
+              </button>
+            </div>
+            <div class="card-content">
+              <ul class="card-meta-list">
+                <li class="card-meta-item">
+                  <ion-icon name="reader-outline" aria-hidden="true"></ion-icon>
+                  <span class="card-meta-text">{{ n.عدد }}</span>
+                </li>
+                <li class="card-meta-item">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <time datetime="PT18H15M44S" class="card-meta-text">{{ n.التاريخ }}</time>
+                </li>
+              </ul>
+              <h3 class="h3">
+                <a href="#" class="card-title" style="font-family:'Cairo',sans-serif;">{{ n.المناسبة|safe }}</a>
+              </h3>
+              <div class="rating-wrapper">
+                <!-- Add your rating code here -->
+              </div>
+              <!-- Add previous and next buttons for the slider -->
+              <div class="slider-controls">
+                <button class="slider-control prev-btn" aria-label="Previous slide">
+                  <ion-icon name="arrow-back"></ion-icon>
+                </button>
+                <button class="slider-control next-btn" aria-label="Next slide">
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+
+
+
+
+
+ <!--
+        - #CATEGORY
+      -->
+
+
+
+
+
+
+
+      <!--
+        - #CTA
+      -->
+
+
+
+
+ </article>
+  </main>
+<script>
+  // Get the slider containers and the slider controls
+  const sliderContainers = document.querySelectorAll('.slider-container');
+  const prevBtns = document.querySelectorAll('.prev-btn');
+  const nextBtns = document.querySelectorAll('.next-btn');
+
+  // Iterate over each slider
+  sliderContainers.forEach((sliderContainer, index) => {
+    // Get all the slides in the current slider container
+    const slides = sliderContainer.querySelectorAll('.card-banner');
+
+    // Initialize the slide index to 0
+    let slideIndex = 0;
+
+    // Show the first slide
+    slides[0].classList.add('active');
+
+    // Add event listeners to the previous and next buttons of the current slider
+    prevBtns[index].addEventListener('click', showPrevSlide);
+    nextBtns[index].addEventListener('click', showNextSlide);
+
+    // Function to show the previous slide
+    function showPrevSlide() {
+      // Hide the current slide
+      slides[slideIndex].classList.remove('active');
+      // Decrement the slide index
+      slideIndex--;
+      // Wrap around to the last slide if needed
+      if (slideIndex < 0) {
+        slideIndex = slides.length - 1;
+      }
+      // Show the new slide
+      slides[slideIndex].classList.add('active');
+    }
+
+    // Function to show the next slide
+    function showNextSlide() {
+      // Hide the current slide
+      slides[slideIndex].classList.remove('active');
+      // Increment the slide index
+      slideIndex++;
+      // Wrap around to the first slide if needed
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+      // Show the new slide
+      slides[slideIndex].classList.add('active');
+    }
+  });
+</script>      <!--
+        - #EVENT
+      -->
+
+
+
+
+
+
+   {% endblock  %}
